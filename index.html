@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>† El Rincón de MICHE †</title>
+    <style>
+        /* ESTILOS CSS - AQUÍ SE CONTROLA EL DISEÑO */
+        body {
+            background-color: #000000;
+            background-image: url('https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExeHF4Z25sNDY2MWc1amE1bmNhanByZGcwZnczYmQybXNvc25ka3Z0eSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/98BthVRzyoX5u/giphy.gif'); 
+            background-size: cover;
+            color: #ffffff;
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            padding: 10px;
+            cursor: crosshair;
+        }
+
+        /* El contenedor principal */
+        .main-container {
+            width: 900px;
+            margin: 0 auto;
+            background-color: rgba(14, 14, 14, 0.95);
+            border: 4px ridge #8a0303;
+            padding: 10px;
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 15px;
+            box-shadow: 0 0 20px #ff0000;
+        }
+
+        /* Cabecera */
+        header {
+            grid-column: 1 / -1;
+            text-align: center;
+            border-bottom: 2px solid #8a0303;
+            padding-bottom: 10px;
+            background: url('https://media.giphy.com/media/26BRy67C6G78oWzC0/giphy.gif');
+        }
+
+        h1 {
+            color: #ff0000;
+            text-shadow: 2px 2px 0px #ffffff;
+            font-size: 40px;
+            margin: 10px 0;
+            letter-spacing: -2px;
+        }
+
+        /* Barra lateral */
+        aside {
+            background-color: #1a1a1a;
+            border: 2px inset #550000;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .profile-pic {
+            width: 180px;
+            height: 250px;
+            border: 2px solid #ffffff;
+            object-fit: cover;
+            background-image: url('miche9.jpeg'); 
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Menú */
+        .nav-links a {
+            display: block;
+            background-color: #8a0303;
+            color: white;
+            padding: 5px;
+            margin: 5px 0;
+            text-decoration: none;
+            border: 1px outset #ff4444;
+            font-weight: bold;
+        }
+        .nav-links a:hover {
+            background-color: #ffffff;
+            color: #8a0303;
+            cursor: help;
+        }
+
+        /* Contenido principal */
+        main {
+            background-color: #000000;
+            border: 2px inset #333;
+            padding: 15px;
+            overflow-y: scroll;
+            height: 600px;
+        }
+
+        /* Cajas de contenido */
+        .content-box {
+            border: 1px dashed #ff0000;
+            margin-bottom: 20px;
+            padding: 10px;
+        }
+
+        h2 {
+            background-color: #8a0303;
+            color: white;
+            font-size: 18px;
+            padding: 3px;
+            display: inline-block;
+        }
+
+        /* Animaciones */
+        .blink { animation: blinker 1s linear infinite; }
+        @keyframes blinker { 50% { opacity: 0; } }
+
+        .marquee-container {
+            background-color: #000000;
+            color: #ff0000;
+            border: 1px solid #ffffff;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        /* Estilos Winamp */
+        .winamp-wrapper {
+            background-color: #282828;
+            border: 2px solid #5a5a5a;
+            border-top-color: #888;
+            border-left-color: #888;
+            width: 100%;
+            padding: 4px;
+            box-shadow: 2px 2px 5px #000;
+            font-family: monospace;
+            margin-bottom: 20px;
+            box-sizing: border-box; /* Para que no se salga del borde */
+        }
+
+        .winamp-header-bar {
+            background: linear-gradient(to right, #000044, #000088);
+            color: #ddd;
+            font-size: 10px;
+            padding: 2px 4px;
+            margin-bottom: 4px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            cursor: move;
+        }
+
+        .winamp-screen-area {
+            background: #000;
+            border: 2px inset #444;
+            padding: 4px;
+            margin-bottom: 4px;
+        }
+
+        .marquee-window {
+            background: #000;
+            height: 16px;
+            overflow: hidden;
+            white-space: nowrap;
+            color: #00FF00;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .scrolling-text {
+            display: inline-block;
+            padding-left: 100%;
+            animation: scroll-text 8s linear infinite;
+        }
+
+        @keyframes scroll-text {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .winamp-info-line {
+            display: flex;
+            justify-content: space-between;
+            color: #00CC00;
+            font-size: 10px;
+            font-family: monospace;
+            margin-top: 2px;
+        }
+
+        .winamp-controls-area {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .winamp-controls-area button {
+            background: linear-gradient(#eee, #ccc);
+            border: 1px outset #fff;
+            font-size: 9px;
+            width: 18%;
+            height: 20px;
+            cursor: pointer;
+        }
+        
+        .winamp-controls-area button:active {
+            border: 1px inset #fff;
+            background: #aaa;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="enter-screen" style="
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background-color: black;
+        z-index: 9999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        color: red;
+        cursor: pointer;
+    ">
+        <h1 class="blink">† MICHE.COM †</h1>
+        <p style="color: white; font-size: 12px;">(haz click para entrar)</p>
+    </div>
+
+    <div class="main-container">
+
+        <header>
+            <div class="marquee-container">
+                <marquee scrollamount="6">
+                    Bienvendio a miche.com ♥ aqui es la zona de los desquehacerados y pa´ mi nobia UwU te amo miche :3 
+                </marquee>
+            </div>
+            <h1>† MICHE †</h1>
+            <p style="font-size: 12px;">⋆ ˚ ｡ ⋆ ☁︎ ˚ ｡ ⋆ ｡ ˚ ☽ ˚ ｡ ⋆</p>
+        </header>
+
+        <aside>
+            <p>Estado actual:</p>
+            <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExa2lybzVkaWUzdnR2OThpd25waDVyNzdjanBkanVnNmp0eWZiczB4ZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/SH2GeSdLkdyxix7B7S/giphy.gif" alt="Chiikawa Llorando" style="width: 180px;">
+            <br><br>
+            <div class="profile-pic"></div> <br>
+            <span class="blink" style="color: #ff0000;">● ONLINE</span>
+
+            <div class="nav-links">
+                <a href="#">Inicio</a>
+                <a href="#">Mi Diario</a>
+                <a href="#">Galería de Arte</a>
+                <a href="#">Lista de Deseos</a>
+            </div>
+
+            <div class="winamp-wrapper">
+                <div class="winamp-header-bar">
+                    <span style="float:left;">WINAMP 2.91</span>
+                    <span style="float:right;">_ □ X</span>
+                </div>
+
+                <div class="winamp-screen-area">
+                    <div class="marquee-window">
+                        <div id="song-title-text" class="scrolling-text">
+                            ... SELECT A SONG ...
+                        </div>
+                    </div>
+                    
+                    <div class="winamp-info-line">
+                        <span id="track-time">00:00</span>
+                        <span id="kbps-display">128 kbps</span>
+                        <span id="khz-display">44 kHz</span>
+                    </div>
+                </div>
+
+                <div class="winamp-controls-area">
+                    <button onclick="prevTrack()" title="Anterior">|◄</button>
+                    <button onclick="playTrack()" title="Reproducir">▶</button>
+                    <button onclick="pauseTrack()" title="Pausar">❚❚</button>
+                    <button onclick="stopTrack()" title="Detener">■</button>
+                    <button onclick="nextTrack()" title="Siguiente">►|</button>
+                </div>
+
+                <input type="range" id="seek-bar" value="0" max="100" style="width: 100%; margin-top: 5px;">
+            </div>
+
+            <audio id="audio-player"></audio>
+
+            <br>
+            <img src="miche1.jpg" alt="" style="width:100%; height: auto; object-fit: cover; border: 2px solid white;">
+            
+            <br><br>
+            <div style="border: 1px solid white; padding: 2px;">
+                <p>Visitas:</p>
+                <p style="color: red; font-family: Impact;">0012</p>
+            </div>
+        </aside>
+
+        <main>
+            <center>
+                <img src="1.png" style="width:100px; height: 100px; object-fit: cover;">
+            </center>
+
+            <div class="content-box">
+                <h2>Helloooo </h2>
+                <p>esta pagina e pa mi nobiesita miche q la amo mucho <br>
+                como quiero a mi papoi favorito<br>
+                de ikue pa maikol<br>
+                por ikueeer </p>
+            </div>
+
+            <div class="content-box">
+                <div style="display: flex; align-items: center; justify-content: center; gap: 5px; flex-wrap: wrap;">
+                    <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExb2Nuc20wenY5dDR1NXMyb3huY2tzNm9sMnB3Z3ptMnE2N3R1YTcxaiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/uKWBNet3fFTP9ZDZIg/giphy.gif" width="80" style="border: 2px solid gold;">
+                    <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExN2hneHR5YjZ0NnJqeXpreHpwMGF0OWpwYTk2aGlqaW03bnByYmE4ZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/6m2STVyQH2F45QL3bG/giphy.gif" width="80" style="border: 2px solid gold;">
+                    <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExc2wxMWZoYmZoeTN1YjBlM3lraGNoYTYxaWV5MWdpdGkydnQ1eTAzdCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/kjqUgP9bGRTo6O3urD/giphy.gif" width="80" style="border: 2px solid gold;">
+                </div>
+                <hr>
+                
+                <div style="display: flex; align-items: center; justify-content: center; gap: 5px; flex-wrap: wrap;">
+                    <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExeTY1ZzBoenRka2txMnNyOTBvNjMyd2U2aHFscTB1eW5wOWlrNXp2ZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Y42w4LXdFeI6s/giphy.gif" width="80" style="border: 2px solid #8a0303;">
+                    <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExdXhoZGU1M2Z1OGkwa3RrcmhiODNidmFqZWNva2phNGU5ZjVwOGFubSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/dZiAQE65tF5QfAFhXC/giphy.gif" width="80" style="border: 2px solid #8a0303;">
+                    <img src="https://media.tenor.com/cnhl7Xn3JnsAAAAM/hannibal-hannibal-silly.gif" width="80" style="border: 2px solid #8a0303;">
+                </div>
+                <hr>
+
+                <center>
+                    <strong style="color: pink;">Chiikawa</strong><br>
+                    <img src="https://media1.tenor.com/m/iIhUOBSKCW4AAAAd/chiikawa-chikawa.gif" width="80">
+                    <p>A veces llora mucho pero es muy valiente</p>
+                    
+                    <div style="display: flex; flex-wrap: wrap; gap: 5px; justify-content: center;">
+                        <img src="miche2.jpg" width="120" style="border: 1px solid white;">
+                        <img src="miche4.jpeg" width="120" style="border: 1px solid white;">
+                        <img src="miche 3.jpeg" width="120" style="border: 1px solid white;">
+                        <img src="miche5.jpeg" width="120" style="border: 1px solid white;">
+                        <img src="miche6.jpeg" width="120" style="border: 1px solid white;">
+                        <img src="miche7.jpeg" width="120" style="border: 1px solid white;">
+                        <img src="miche8.jpeg" width="120" style="border: 1px solid white;">
+                        <img src="miche9.jpeg" width="120" style="border: 1px solid white;">
+                        <img src="miche10.jpeg" width="120" style="border: 1px solid white;">
+                        <img src="miche11.jpeg" width="120" style="border: 1px solid white;">
+                        <img src="miche12.jpeg" width="120" style="border: 1px solid white;">
+                    </div>
+                </center>
+            </div>
+
+            <div class="content-box">
+                <p>esta pagina fue hecha para mi noviecita miche loviu so mush .</p>
+            </div>
+
+            <center>
+                <img src="https://anlucas.neocities.org/88x31/hate.gif">
+                <img src="https://anlucas.neocities.org/88x31/best_viewed_with_eyes.gif">
+                <img src="https://anlucas.neocities.org/88x31/firefox.gif">
+            </center>
+
+        </main>
+
+    </div>
+
+    <script>
+        // ==========================================
+        // TU LISTA DE CANCIONES
+        // ==========================================
+        const playlist = [
+            {
+                archivo: "lvl.mp3", 
+                nombre: "A$AP Rocky LVL"
+            },
+            {
+                archivo: "every.mp3", 
+                nombre: "A$AP Rocky - Everyday"
+            },
+            {
+                archivo: "pha.mp3", 
+                nombre: "A$AP Rocky - Pharsyde"
+            },
+            {
+                archivo: "cry.mp3", 
+                nombre: "Cigarettes After Sex - Cry"
+            }
+        ];
+
+        let currentTrackIndex = 0;
+        const audioPlayer = document.getElementById('audio-player');
+        const titleText = document.getElementById('song-title-text');
+        const timeDisplay = document.getElementById('track-time');
+        const seekBar = document.getElementById('seek-bar');
+
+        // Cargar la primera canción al iniciar
+        loadTrack(currentTrackIndex);
+
+        function loadTrack(index) {
+            audioPlayer.src = playlist[index].archivo;
+            titleText.innerText = "*** " + playlist[index].nombre + " *** (" + (index + 1) + "/" + playlist.length + ")";
+            audioPlayer.load();
+        }
+
+        function playTrack() {
+            audioPlayer.play();
+        }
+
+        function pauseTrack() {
+            audioPlayer.pause();
+        }
+
+        function stopTrack() {
+            audioPlayer.pause();
+            audioPlayer.currentTime = 0;
+        }
+
+        function nextTrack() {
+            currentTrackIndex++;
+            if (currentTrackIndex >= playlist.length) {
+                currentTrackIndex = 0; 
+            }
+            loadTrack(currentTrackIndex);
+            playTrack();
+        }
+
+        function prevTrack() {
+            currentTrackIndex--;
+            if (currentTrackIndex < 0) {
+                currentTrackIndex = playlist.length - 1; 
+            }
+            loadTrack(currentTrackIndex);
+            playTrack();
+        }
+
+        // Actualizar tiempo y barra
+        audioPlayer.addEventListener('timeupdate', () => {
+            let mins = Math.floor(audioPlayer.currentTime / 60);
+            let secs = Math.floor(audioPlayer.currentTime % 60);
+            if (secs < 10) secs = "0" + secs;
+            timeDisplay.innerText = mins + ":" + secs;
+
+            if (audioPlayer.duration) {
+                seekBar.value = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+            }
+        });
+
+        // Mover barra
+        seekBar.addEventListener('input', () => {
+            const time = (seekBar.value / 100) * audioPlayer.duration;
+            audioPlayer.currentTime = time;
+        });
+
+        // Siguiente canción automática
+        audioPlayer.addEventListener('ended', nextTrack);
+
+        // ========================================================
+        // AQUÍ CONECTAMOS LA PANTALLA DE INICIO CON EL WINAMP
+        // ========================================================
+        const enterBtn = document.getElementById('enter-screen');
+        if (enterBtn) {
+            enterBtn.addEventListener('click', () => {
+                // 1. Quitar lo negro
+                enterBtn.style.display = 'none';
+                // 2. Dar Play al Winamp
+                playTrack();
+            });
+        }
+    </script>
+</body>
+</html>
